@@ -30,9 +30,7 @@ app.use(mongoSanitize());
 
 //Data sanitization against XSS
 app.use(xss());
-// git remote add origin https://github.com/Arya-Lingayat/To-let-Globe-Authentication.git
-// git branch -M main
-// git push -u origin main
+
 app.use((req, res, next) => {
   console.log(`Hello from the middlewear`);
   next();
