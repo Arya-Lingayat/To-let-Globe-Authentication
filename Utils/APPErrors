@@ -1,0 +1,18 @@
+class AppError extends Error {
+  constructor(message, statusCode) {
+    super(message);
+
+    this.statusCode = statusCode;
+    this.status = `${statusCode}`.startsWith("4") ? "fail" : "error";
+    // Based on the statusCode, the status property is set to 'fail' for client-side errors
+    //  (status codes starting with 4),
+    //  and 'error' for server-side errors (status codes starting with 5).
+    this.isOperational = true;
+
+    Error.captureStackTrace(this, this.constructor);
+    // This ensures the error stack trace doesn’t include this constructor,
+    // making the stack trace cleaner
+  }
+}
+
+module.exports = AppError;
